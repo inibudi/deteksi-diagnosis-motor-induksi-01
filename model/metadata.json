@@ -1,0 +1,181 @@
+{
+  "dataset": "M6-dataset_kondisi_motor.csv",
+  "features": [
+    "current_rms_a",
+    "stator_temperature_c",
+    "vibration_mm_s",
+    "power_factor",
+    "rotational_speed_rpm"
+  ],
+  "units": {
+    "current_rms_a": "A",
+    "stator_temperature_c": "\u00b0C",
+    "vibration_mm_s": "mm/s",
+    "power_factor": "",
+    "rotational_speed_rpm": "rpm"
+  },
+  "ranges": {
+    "current_rms_a": [
+      5.485,
+      16.14
+    ],
+    "stator_temperature_c": [
+      32.098,
+      99.183
+    ],
+    "vibration_mm_s": [
+      0.826,
+      9.198
+    ],
+    "power_factor": [
+      0.673,
+      0.99
+    ],
+    "rotational_speed_rpm": [
+      1301.41,
+      1563.57
+    ]
+  },
+  "normal_band": {
+    "current_rms_a": [
+      6.6776,
+      9.6676
+    ],
+    "stator_temperature_c": [
+      39.6968,
+      58.85019999999999
+    ],
+    "vibration_mm_s": [
+      1.472,
+      3.37005
+    ],
+    "power_factor": [
+      0.87465,
+      0.9603499999999999
+    ],
+    "rotational_speed_rpm": [
+      1441.5905,
+      1518.1245
+    ]
+  },
+  "class_means": {
+    "Electrical": {
+      "current_rms_a": 12.331,
+      "stator_temperature_c": 57.84,
+      "vibration_mm_s": 3.451,
+      "power_factor": 0.776,
+      "rotational_speed_rpm": 1452.119
+    },
+    "Mechanical": {
+      "current_rms_a": 9.162,
+      "stator_temperature_c": 56.701,
+      "vibration_mm_s": 6.466,
+      "power_factor": 0.855,
+      "rotational_speed_rpm": 1405.928
+    },
+    "Normal": {
+      "current_rms_a": 8.18,
+      "stator_temperature_c": 49.326,
+      "vibration_mm_s": 2.417,
+      "power_factor": 0.919,
+      "rotational_speed_rpm": 1479.669
+    },
+    "Thermal": {
+      "current_rms_a": 9.888,
+      "stator_temperature_c": 76.177,
+      "vibration_mm_s": 3.413,
+      "power_factor": 0.863,
+      "rotational_speed_rpm": 1452.08
+    }
+  },
+  "detector": {
+    "model": "Random Forest",
+    "params": "{'max_depth': None, 'n_estimators': 100}",
+    "accuracy": 0.9875,
+    "f1_macro": 0.9863737012433997,
+    "recall_fault": 0.9882352941176471
+  },
+  "diagnosis": {
+    "model": "KNN",
+    "params": "{'n_neighbors': 21, 'weights': 'uniform'}",
+    "accuracy": 0.9176470588235294,
+    "f1_macro": 0.9145114942528735
+  },
+  "two_stage": {
+    "accuracy": 0.9583333333333334,
+    "f1_macro": 0.9190947081893478
+  },
+  "comparison_detection": [
+    {
+      "Model": "KNN",
+      "Parameter terbaik": "{'n_neighbors': 15, 'weights': 'distance'}",
+      "F1 macro (CV)": 0.9862,
+      "Accuracy (uji)": 0.9958,
+      "F1 macro (uji)": 0.9954,
+      "Recall Fault (uji)": 0.9882,
+      "Precision Fault (uji)": 1.0
+    },
+    {
+      "Model": "Decision Tree",
+      "Parameter terbaik": "{'max_depth': 6, 'min_samples_leaf': 1}",
+      "F1 macro (CV)": 0.976,
+      "Accuracy (uji)": 0.9792,
+      "F1 macro (uji)": 0.9773,
+      "Recall Fault (uji)": 0.9765,
+      "Precision Fault (uji)": 0.9651
+    },
+    {
+      "Model": "Random Forest",
+      "Parameter terbaik": "{'max_depth': None, 'n_estimators': 100}",
+      "F1 macro (CV)": 0.9898,
+      "Accuracy (uji)": 0.9875,
+      "F1 macro (uji)": 0.9864,
+      "Recall Fault (uji)": 0.9882,
+      "Precision Fault (uji)": 0.9767
+    }
+  ],
+  "comparison_diagnosis": [
+    {
+      "Model": "KNN",
+      "Parameter terbaik": "{'n_neighbors': 21, 'weights': 'uniform'}",
+      "F1 macro (CV)": 0.9526,
+      "Accuracy (uji)": 0.9176,
+      "F1 macro (uji)": 0.9145
+    },
+    {
+      "Model": "Decision Tree",
+      "Parameter terbaik": "{'max_depth': 4, 'min_samples_leaf': 1}",
+      "F1 macro (CV)": 0.9037,
+      "Accuracy (uji)": 0.8941,
+      "F1 macro (uji)": 0.8934
+    },
+    {
+      "Model": "Random Forest",
+      "Parameter terbaik": "{'max_depth': None, 'n_estimators': 200}",
+      "F1 macro (CV)": 0.934,
+      "Accuracy (uji)": 0.9059,
+      "F1 macro (uji)": 0.9042
+    }
+  ],
+  "importance": {
+    "Deteksi": {
+      "current_rms_a": 0.1486,
+      "stator_temperature_c": 0.1838,
+      "vibration_mm_s": 0.2782,
+      "power_factor": 0.3327,
+      "rotational_speed_rpm": 0.0568
+    },
+    "Diagnosis": {
+      "current_rms_a": 0.2067,
+      "stator_temperature_c": 0.2599,
+      "vibration_mm_s": 0.3525,
+      "power_factor": 0.1176,
+      "rotational_speed_rpm": 0.0632
+    }
+  },
+  "versions": {
+    "python": "3.13.18",
+    "scikit-learn": "1.6.1",
+    "numpy": "2.1.3"
+  }
+}
